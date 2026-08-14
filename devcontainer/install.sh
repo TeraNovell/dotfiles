@@ -38,3 +38,5 @@ su - "$BREW_USER" -c '
     brew install fish
     brew install --cask antigravity-cli
 '
+
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
