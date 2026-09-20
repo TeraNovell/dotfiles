@@ -42,6 +42,7 @@ if [ "$(id -u)" -eq 0 ]; then
         eval "$("$BREW" shellenv)"
 
         brew install fish
+        brew install opencode
         brew install --cask antigravity-cli
     '
 else
@@ -56,6 +57,7 @@ else
     eval "$("$BREW" shellenv)"
 
     brew install fish
+    brew install opencode
     brew install --cask antigravity-cli
 fi
 
