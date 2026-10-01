@@ -24,12 +24,10 @@ sudo rm -rf /var/lib/apt/lists/*
 
 if [ "$(id -u)" -eq 0 ]; then
     # root user
-    BREW_USER="${_REMOTE_USER:-$(getent passwd 1000 | cut -d: -f1)}"
-
-    if [ -z "$BREW_USER" ]; then
-        echo "No non-root user found!"
-        exit 1
-    fi
+    BREW_USER=brew
+    id "$BREW_USER" >/dev/null 2>&1 || useradd -m -s /bin/bash "$BREW_USER"
+    echo "$BREW_USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/brew
+    chmod 0440 /etc/sudoers.d/brew
 
     su - "$BREW_USER" -c '
         BREW=/home/linuxbrew/.linuxbrew/bin/brew
